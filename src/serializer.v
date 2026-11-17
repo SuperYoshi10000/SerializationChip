@@ -5,6 +5,7 @@
 
 `default_nettype none
 
+// Top Module
 module tt_um_ytk_serializerchip (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
@@ -24,7 +25,7 @@ module tt_um_ytk_serializerchip (
         .ena(ena),
         .clk(clk),
         .rst_n(rst_n)
-    )
+    );
 endmodule
 
 module serializerchip (
