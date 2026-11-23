@@ -44,6 +44,10 @@ module tt_um_ytk_serializerchip (
 
     assign uo_out = mode ? out2 : out1;
 
+    // Disable output from IO pins
+    assign uio_out = 0;
+    assign uioa_oe = 0;
+
     assign out1[7:1] = 0;
 
     // List all unused inputs to prevent warnings
@@ -72,7 +76,10 @@ module mux8to1 (
     input wire [7:0] in,
     output wire out
 );
-    assign out = in[sel];
+    integer idx;
+    always @(*) idx = sel;
+
+    assign out = in[idx];
 endmodule
 
 module demux1to8 (
