@@ -85,10 +85,20 @@ endmodule
 module demux1to8 (
     input wire [2:0] sel,
     input wire in,
-    output wire [7:0] out
+    output wire [7:0] out,
 );
-    //TODO figure this out
-    assign out = 0;
+    reg [7:0] out_reg;
+    integer idx;
+    always @(*) idx = sel;
+
+    always @(posedge clk) begin
+        if (!rst_n)
+            out_reg <= 0;
+        else
+            out_reg[idx] <= in;
+    end
+
+    assign out = out_reg;
 endmodule
 
 module serializer (
