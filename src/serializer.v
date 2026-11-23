@@ -86,6 +86,8 @@ module demux1to8 (
     input wire [2:0] sel,
     input wire in,
     output wire [7:0] out,
+    
+    input wire clk,
     input wire rst_n
 );
     reg [7:0] out_reg;
@@ -141,6 +143,7 @@ module deserializer (
         sel,
         in,
         out,
+        clk,
         rst_n
     );
 endmodule
