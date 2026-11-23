@@ -46,7 +46,7 @@ module tt_um_ytk_serializerchip (
 
     // Disable output from IO pins
     assign uio_out = 0;
-    assign uioa_oe = 0;
+    assign uio_oe = 0;
 
     assign out1[7:1] = 0;
 
