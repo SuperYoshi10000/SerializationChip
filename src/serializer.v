@@ -85,7 +85,7 @@ endmodule
 module demux1to8 (
     input wire [2:0] sel,
     input wire in,
-    output wire [7:0] out,
+    output wire [7:0] out
 );
     reg [7:0] out_reg;
     integer idx;
