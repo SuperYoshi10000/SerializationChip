@@ -21,7 +21,7 @@ Serial to Parallel
 
 ## How to test
 
-See `test.py`
+See `test.py` or view GDS output
 
 ## External hardware
 
