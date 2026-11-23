@@ -9,11 +9,19 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+Parallel to Serial
+- Set uio 0 to 0
+- Input: ui 7-0
+- Output: uo 0
+
+Serial to Parallel
+- Set IO 0 to 1
+- Input: ui 0
+- Output: uo 7-0
 
 ## How to test
 
-Explain how to use your project
+See `test.py`
 
 ## External hardware
 
