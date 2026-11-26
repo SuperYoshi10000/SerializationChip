@@ -1,8 +1,24 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# Serializer and Deserializer
 
 - [Read the documentation for project](docs/info.md)
+
+## How it works
+
+Parallel to Serial
+- Set uio 0 to 0
+- Input: ui 7-0
+- Output: uo 0
+
+Serial to Parallel
+- Set IO 0 to 1
+- Input: ui 0
+- Output: uo 7-0
+
+## How to test
+
+See `test.py` or view GDS output
 
 ## What is Tiny Tapeout?
 
