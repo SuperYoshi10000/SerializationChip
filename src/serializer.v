@@ -27,26 +27,30 @@ module tt_um_ytk_serializerchip (
     
     wire [7:0] out1;
     wire [7:0] out2;
+    wire [3:0] state1;
+    wire [3:0] state2;
 
     serializer s1 (
         .in(ui_in),
         .clk(clk),
         .rst_n(rst_n & mode == 1'b0),
-        .out(out1[0])
+        .out(out1),
+        .state(state1)
     );
 
     deserializer s2 (
-        .in(ui_in[0]),
+        .in(ui_in),
         .clk(clk),
         .rst_n(rst_n & mode == 1'b1),
-        .out(out2)
+        .out(out2),
+        .state(state2)
     );
 
     assign uo_out = mode ? out2 : out1;
+    assign uio_out[7:4] = mode ? state2 : state1;
 
-    // Disable output from IO pins
-    assign uio_out = 0;
-    assign uio_oe = 0;
+    assign uio_out[3:0] = 0;
+    assign uio_oe = 8'b11110000;
 
     assign out1[7:1] = 0;
 
@@ -87,6 +91,7 @@ module demux1to8 (
     input wire in,
     output wire [7:0] out,
     
+    input wire update,
     input wire clk,
     input wire rst_n
 );
@@ -97,7 +102,7 @@ module demux1to8 (
     always @(posedge clk) begin
         if (!rst_n)
             out_reg <= 0;
-        else
+        else if (update)
             out_reg[idx] <= in;
     end
 
@@ -108,7 +113,8 @@ module serializer (
     input wire [7:0] in,
     input wire clk,
     input wire rst_n,
-    output wire out
+    output wire [7:0] out,
+    output wire [3:0] state
 );
     wire [2:0] sel;
 
@@ -119,19 +125,24 @@ module serializer (
     );
 
     mux8to1 m1 (
-        sel,
-        in,
-        out
+        .sel(sel),
+        .in(in),
+        .out(out[0])
     );
+
+    assign out[7:1] = 0;
+    assign state = {sel == 7 ? 1'b1 : 1'b0, sel};
 endmodule
 
 module deserializer (
-    input wire in,
+    input wire [7:0] in,
     input wire clk,
     input wire rst_n,
-    output wire [7:0] out
+    output wire [7:0] out,
+    output wire [3:0] state
 );
     wire [2:0] sel;
+    assign state = {sel == 7 ? 1'b1 : 1'b0, sel};
 
     counter c1 (
         clk,
@@ -140,10 +151,11 @@ module deserializer (
     );
 
     demux1to8 m1 (
-        sel,
-        in,
-        out,
-        clk,
-        rst_n
+        .sel(sel),
+        .in(in[0]),
+        .out(out),
+        .update(in[1]),
+        .clk(clk),
+        .rst_n(rst_n)
     );
 endmodule
