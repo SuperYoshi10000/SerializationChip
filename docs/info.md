@@ -16,7 +16,7 @@ Parallel to Serial
 
 Serial to Parallel
 - Set IO 0 to 1
-- Input: ui 0
+- Input: ui 0, only when ui 1 is 1
 - Output: uo 7-0
 
 ## How to test
