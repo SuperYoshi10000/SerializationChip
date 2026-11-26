@@ -97,11 +97,14 @@ module demux1to8 (
 );
     reg [7:0] out_reg;
     integer idx;
-    always @(*) idx = sel;
+    always @(*) begin
+        idx = sel;
+        if (!rst_n) out_reg = 0;
+    end
 
     always @(posedge clk) begin
         if (!rst_n)
-            out_reg <= 0;
+            out_reg = 0;
         else if (update)
             out_reg[idx] <= in;
     end
