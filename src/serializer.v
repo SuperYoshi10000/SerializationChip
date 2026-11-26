@@ -67,7 +67,6 @@ module counter (
     input wire rst_n,
     output reg [2:0] count
 );
-    always @(*) if (!rst_n) out_reg = 0;
     always @ (posedge clk) begin
         if (!rst_n)
             count <= 3'b000;
@@ -98,14 +97,11 @@ module demux1to8 (
 );
     reg [7:0] out_reg;
     integer idx;
-    always @(*) begin
-        idx = sel;
-        if (!rst_n) out_reg = 0;
-    end
+    always @(*) idx = sel;
 
     always @(posedge clk) begin
         if (!rst_n)
-            out_reg = 0;
+            out_reg <= 0;
         else if (update)
             out_reg[idx] <= in;
     end
