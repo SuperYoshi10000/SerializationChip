@@ -67,6 +67,7 @@ module counter (
     input wire rst_n,
     output reg [2:0] count
 );
+    always @(*) if (!rst_n) out_reg = 0;
     always @ (posedge clk) begin
         if (!rst_n)
             count <= 3'b000;
