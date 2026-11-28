@@ -3,6 +3,7 @@
 # Serializer and Deserializer
 
 - [Read the documentation for project](docs/info.md)
+- [See the writeup](https://superyoshi10000.github.io/static-assets/serializerchip/SerializerChip-writeup.pdf)
 
 ## How it works
 
