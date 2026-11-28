@@ -4,7 +4,7 @@
 
 - [Read the documentation for project](docs/info.md)
 - [See the writeup](https://superyoshi10000.github.io/static-assets/serializerchip/SerializerChip-writeup.pdf)
-- [See it working](https://cdn.hackclub.com/01a2205e-238d-7eb8-9f89-292acc0a6e70/2026-11-27_23-03-55.mp4)
+- [See it working](https://cdn.hackclub.com/01a2205e-238d-7eb8-9f89-292acc0a6e70/2026-11-27_23-03-55.mp4) (ignore the background music)
 
 ## How it works
 
